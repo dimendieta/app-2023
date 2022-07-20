@@ -1,0 +1,88 @@
+<ion-content>
+
+  
+  <div class="ion-page">
+    
+      <div class="scene">
+        <img src="assets/img/stars.png" class="stars">
+        <img src="assets/img/space_ship.png" class="ship">
+        <img src="assets/img/astronaut.png" class="astronaut">
+        <img src="assets/img/comet.png" class="comet">
+        <img src="assets/img/moon.png" class="moon">
+      </div>
+      
+    <ion-header>
+      <ion-toolbar>
+        <ion-title style="text-align: center;" class="title">Lista de Usuarios</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+
+      <ion-grid fixed>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="auto">
+
+            <ion-button id="open-modal" expand="block" color="dark" class="btn-users">Usuarios
+              <ion-icon name="accessibility-sharp" slot="start"></ion-icon>
+            </ion-button>
+        
+          </ion-col>
+        
+        </ion-row>
+      </ion-grid>
+
+      <ion-modal #modal trigger="open-modal" [presentingElement]="presentingElement">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Usuarios (Resultados)</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="modal.dismiss()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <ion-list>
+              
+              
+              <ion-item *ngFor="let usuario of usuarios">
+               <br>
+                <p>
+                  
+                  Nombre: {{usuario.nombre}}
+                  <br>
+
+                  Correo: {{usuario.correo}}
+                  <br>
+     
+                  Id: {{usuario.uid}}
+                  <br>
+                  <br>
+   
+
+
+
+
+
+                </p>
+                
+              
+  
+
+            </ion-item>
+
+
+
+
+
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-content>
+  </div>
+   
+        
+      </ion-content>
+        
