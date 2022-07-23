@@ -45,7 +45,7 @@ export class RegistroComponent implements OnInit {
       return;
     }
 
-    this.interaction.presentLoading('registrando...')
+    this.interaction.presentLoading('Registrando...')
     console.log('User -> ', this.newUser);
     const res = await  this.authenticationService.registrarUser(this.newUser).catch( error=>{
       this.interaction.closeLoading();

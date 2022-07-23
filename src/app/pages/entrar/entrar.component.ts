@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+/* import { type } from 'os'; */
 import { AuthenticationService } from 'src/app/services/autentication.service';
 import { InteractionService } from 'src/app/services/interaction.service';
 
@@ -15,6 +16,8 @@ export class EntrarComponent implements OnInit {
     correo:null,
     password:null
   }
+  type="string";
+
 
   constructor(private  authenticationService: AuthenticationService,
               private router:Router,
@@ -44,6 +47,16 @@ export class EntrarComponent implements OnInit {
         this.router.navigate(['/home'])
     }
     }
-    
+  
+ /*    mostrar() {
+      var tipo = document.getElementById("password");
+      if( tipo.type == "password"){
+            tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+    }
+ */
+  
   }
 

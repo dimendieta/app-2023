@@ -12,7 +12,7 @@
   <ion-card>
     
     
-    
+<!--     
     <ion-item>
       <ion-label>Nota 1: </ion-label>
       <ion-input [(ngModel)]="data.nota1"  type="number"></ion-input>
@@ -34,7 +34,7 @@
     <ion-button (click)="getsumaCliente()" expand="block" color="success">
       Sumar Cliente
      </ion-button>
-  
+   -->
  <ng-container *ngIf="respuesta">
 <ion-item>
   <ion-label> Promedio es : {{respuesta.respuesta}}
@@ -48,13 +48,6 @@
 
 <ion-card>
 
-  <ion-button (click)="guardarLed()" expand="block" color="success">
-    Prender Led
-  </ion-button>
-  
-  <ion-button (click)="apagarLed()" expand="block" color="danger">
-    Apagar Led
-  </ion-button>
   
   estadoLed
   {{stateled}}

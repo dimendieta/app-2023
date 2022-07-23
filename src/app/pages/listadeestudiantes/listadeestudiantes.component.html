@@ -45,32 +45,68 @@
           <ion-content>
             <ion-list>
               
-              
-              <ion-item *ngFor="let usuario of usuarios">
-               <br>
-                <p>
-                  
-                  Nombre: {{usuario.nombre}}
-                  <br>
 
-                  Correo: {{usuario.correo}}
-                  <br>
-     
-                  Id: {{usuario.uid}}
-                  <br>
-                  <br>
-   
-
-
-
-
-
-                </p>
-                
-              
+              <div *ngIf="!userSelected">
+                <ion-item *ngFor="let usuario of usuarios" (click)="selectuser(usuario)">
+                 <br>
+                  <p>
+                    
+                    Nombre: {{usuario.nombre}}
+                    <br>
   
+                    Correo: {{usuario.correo}}
+                    <br>
+       
+                    Id: {{usuario.uid}}
+                    <br>
+                    <br>
+     
+  
+  
+  
+  
+  
+                  </p>
+                  
+                
+    
+  
+              </ion-item>
 
-            </ion-item>
+              </div>
+
+              <div *ngIf="userSelected">
+
+                <ion-button (click)="userSelected = null" expand="block" fill="clear" shape="round">
+                  atras
+                </ion-button>
+
+                <ion-item>
+                  <br>
+                   <p>
+                     
+                     Nombre: {{userSelected.nombre}}
+                     <br>
+   
+z
+        
+                     Id: {{userSelected.uid}}
+                     <br>
+                     <br>
+      
+   
+   
+   
+   
+   
+                   </p>
+                   
+                 
+     
+   
+               </ion-item>
+              </div>
+              
 
 
 
@@ -80,6 +116,9 @@
           </ion-content>
         </ng-template>
       </ion-modal>
+
+
+
     </ion-content>
   </div>
    

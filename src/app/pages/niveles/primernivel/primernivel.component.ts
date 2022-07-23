@@ -137,9 +137,12 @@ export class PrimernivelComponent implements OnInit {
              uid: this.firestore.getId(),  
            }
           
-           const path = 'Usuarios/' + this.uid + '/resultados';
-           this.firestore.getCollection(path,);  
+           const path = 'Usuarios/' + this.uid + '/jugadas';
+        
+           this.firestore.saveDoc(path,data.uid,data).then(() => {
 
+           })
+  
            }
            this.primerClick.success = true;
 

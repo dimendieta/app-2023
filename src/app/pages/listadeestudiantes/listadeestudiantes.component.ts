@@ -14,6 +14,8 @@ export class ListadeestudiantesComponent implements OnInit {
 
   usuarios: UserInfoI[]=[];
 
+  userSelected:UserInfoI;
+
   
   presentingElement = null;
 
@@ -55,6 +57,20 @@ export class ListadeestudiantesComponent implements OnInit {
         console.log("los usres son ",res);
         this.usuarios = res
    });
+   }
+
+   selectuser(user: UserInfoI) {
+        this.userSelected = user;
+        this.loadJugudadas();
+   }
+
+   loadJugudadas() {
+      const path = 'Usuarios/' + this.userSelected.uid + '/jugadas';
+      this.firestoreService.getCollection(path).subscribe ( res => {
+            console.log('resultados loaded successfully', res);
+            
+      })
+
    }
  
  }
