@@ -66,6 +66,9 @@ export class DesafioComponent implements OnInit {
 
  }
  async guardarLed(){
+
+  console.log("se envio con exito");
+  
   let path = 'led';
   await this.realtimedbService.createObject(path, true);
   this.versionDB = this.versionDB + 1;

@@ -24,6 +24,7 @@ export class PrimernivelComponent implements OnInit {
   aciertos=0
   uid: string
   
+  
 
   constructor(
   public timerService:TimerService,
@@ -107,7 +108,7 @@ export class PrimernivelComponent implements OnInit {
 
  }
 
- vuelta(carta: CartaI) {
+  async vuelta(carta: CartaI) {
     carta.enable = true;
     console.log('vuelta ->', this.cont);
     if (this.cont == 0) {
@@ -133,14 +134,15 @@ export class PrimernivelComponent implements OnInit {
            const data:ResultadoJuego ={
              intentos:this.intentos,
              tiempo:this.tiempo,
-             nivel:2,
-             uid: this.firestore.getId(),  
+             nivel:1,
+             id: this.firestore.getId(),  
            }
           
-           const path = 'Usuarios/' + this.uid + '/jugadas';
+           const uid=  await this.auth.getUid();
+           const path = 'Usuarios/' + uid + '/jugadas';
         
-           this.firestore.saveDoc(path,data.uid,data).then(() => {
-
+           this.firestore.saveDoc(path,data.id,data).then(() => {
+            this.interaction.presentToast('Se guardo correctamente tu progreso');
            })
   
            }
@@ -171,7 +173,7 @@ export class PrimernivelComponent implements OnInit {
     })
  }
 
-  
+
 }
 
 interface CartaI {
@@ -187,5 +189,5 @@ interface CartaI {
     segundos:number
         }
   nivel:number
-  uid:string
+  id:string
       }

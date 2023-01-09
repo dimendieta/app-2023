@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/autentication.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 import { InteractionService } from 'src/app/services/interaction.service';
@@ -27,7 +28,8 @@ export class TercernivelComponent implements OnInit {
   constructor( public timerService:TimerService,
     private interaction: InteractionService,
     private router: Router,
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private auth: AuthenticationService
     ) {
     setTimeout(()=>{
       this.tiempo=this.timerService.tiempo;
@@ -138,7 +140,7 @@ export class TercernivelComponent implements OnInit {
 
  }
 
- vuelta(carta: CartaI) {
+async vuelta(carta: CartaI) {
     carta.enable = true;
     console.log('vuelta ->', this.cont);
     if (this.cont == 0) {
@@ -161,21 +163,19 @@ export class TercernivelComponent implements OnInit {
           this.interaction.closeLoading();
         }, 2000);
              this.router.navigate(['/niveles'])
-          
-           
-              
-        
-
            //felicitar al usuario
            const data:ResultadoJuego ={
-      /*       uid: this.firestore.cretid, */ 
+
             intentos:this.intentos,
              tiempo:this.tiempo,
-             nivel:2,
-            /*  id: this.firestore.cretid, */
+             nivel:3,
+             id: this.firestore.getId(),  
            }
-        /*    const path = 'Usuarios/' + this.uid + '/resultados';
-           this.firestore.creatdoc(path, data, data.id); */
+           const uid=  await this.auth.getUid();
+           const path = 'Usuarios/' + uid + '/jugadas';
+           this.firestore.saveDoc(path,data.id,data).then(() => {
+
+           })
 
            }
     
@@ -214,12 +214,12 @@ interface CartaI {
   position: number;
   success: boolean;
 }
-export interface ResultadoJuego{
- /*  uid:number  */
- intentos:number
- tiempo:{
-      minutos:number
-      segundos:number
- }
- nivel:number
-}
+interface ResultadoJuego{
+  intentos:number
+  tiempo:{
+    minutos:number
+    segundos:number
+        }
+  nivel:number
+  id:string
+      }

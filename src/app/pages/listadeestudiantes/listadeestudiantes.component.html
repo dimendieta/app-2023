@@ -78,21 +78,27 @@
               <div *ngIf="userSelected">
 
                 <ion-button (click)="userSelected = null" expand="block" fill="clear" shape="round">
-                  atras
+                  Atras
                 </ion-button>
 
-                <ion-item>
+                <ion-item *ngFor="let jugadas of jugada" >
                   <br>
                    <p>
+
+                     Id: {{jugadas.id}}
+                     <br>
+                          
+                     Nivel: {{jugadas.nivel}}
+                     <br>
                      
-                     Nombre: {{userSelected.nombre}}
+                     Intentos: {{jugadas.intentos}}
                      <br>
    
-z
+
+                     Tiempo: {{jugadas.tiempo.minutos}} : {{jugadas.tiempo.segundos}}
+                     <br>
+                     <br>
         
-                     Id: {{userSelected.uid}}
-                     <br>
-                     <br>
       
    
    

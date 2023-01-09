@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/autentication.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 /* import { Firestore } from '@google-cloud/firestore'; */
 
 import { InteractionService } from 'src/app/services/interaction.service';
@@ -27,7 +29,9 @@ export class SegundonivelComponent implements OnInit {
   constructor(
     public timerService:TimerService,
     private interaction: InteractionService,
-    private router: Router
+    private router: Router,
+    private firestore: FirestoreService,
+    private auth: AuthenticationService
     /* firestore: Firestore */
   ) { 
     setTimeout(()=>{
@@ -114,7 +118,7 @@ export class SegundonivelComponent implements OnInit {
 
   }
 
-  vuelta(carta: CartaI) {
+ async vuelta(carta: CartaI) {
      carta.enable = true;
      console.log('vuelta ->', this.cont);
      if (this.cont == 0) {
@@ -143,10 +147,14 @@ export class SegundonivelComponent implements OnInit {
               intentos:this.intentos,
               tiempo:this.tiempo,
               nivel:2,
-             /*  id: this.firestore.cretid, */
+              id: this.firestore.getId(),  
             }
-         /*    const path = 'Usuarios/' + this.uid + '/resultados';
-            this.firestore.creatdoc(path, data, data.id); */
+            const uid=  await this.auth.getUid();
+            const path = 'Usuarios/' + uid + '/jugadas';
+         
+            this.firestore.saveDoc(path,data.id,data).then(() => {
+ 
+            })
 
             }
             this.primerClick.success = true;
@@ -186,12 +194,12 @@ interface CartaI {
   position: number;
   success: boolean;
 }
-export interface ResultadoJuego{
+interface ResultadoJuego{
   intentos:number
   tiempo:{
-       minutos:number
-       segundos:number
-  }
+    minutos:number
+    segundos:number
+        }
   nivel:number
- /*  id:number */
-}
+  id:string
+      }

@@ -10,11 +10,13 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class ListadeestudiantesComponent implements OnInit {
 
-@Input() usuario:UserInfoI;
+@Input() usuario:ResultadoJuego;
 
   usuarios: UserInfoI[]=[];
 
   userSelected:UserInfoI;
+
+  jugada: ResultadoJuego[]=[];
 
   
   presentingElement = null;
@@ -25,6 +27,7 @@ export class ListadeestudiantesComponent implements OnInit {
   ngOnInit() {
     this.presentingElement = document.querySelector('.ion-page');
     this.getUsuarios();
+
 
   }
   
@@ -66,9 +69,10 @@ export class ListadeestudiantesComponent implements OnInit {
 
    loadJugudadas() {
       const path = 'Usuarios/' + this.userSelected.uid + '/jugadas';
-      this.firestoreService.getCollection(path).subscribe ( res => {
-            console.log('resultados loaded successfully', res);
-            
+      this.firestoreService.getCollection<ResultadoJuego>(path).subscribe ( res => {
+            this.jugada=res;
+        console.log('resultados loaded successfully', res);
+    
       })
 
    }

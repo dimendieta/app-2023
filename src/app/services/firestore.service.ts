@@ -9,7 +9,8 @@ export class FirestoreService {
   constructor(private firestore: AngularFirestore) { }
 
   saveDoc(path: string, id: string, data:any) {
-    return this.firestore.collection(path).doc(id).set(data);
+    const collection = this.firestore.collection(path);
+    return collection.doc(id).set(data);
   }
 
   getDocumentId<tipo>(path: string, id: string) {

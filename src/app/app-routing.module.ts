@@ -42,7 +42,7 @@ const routes: Routes = [
    {path: 'restaurante', component: RestauranteComponent, canActivate: [AngularFireAuthGuard]}, 
    {path: 'segundonivel', component: SegundonivelComponent, canActivate: [AngularFireAuthGuard]}, 
    {path: 'tercernivel', component: TercernivelComponent, canActivate: [AngularFireAuthGuard]}, 
-   {path: 'listadeestudiantes', component: ListadeestudiantesComponent, ...canActivate(onlyAdmin)  }, 
+   {path: 'listadeestudiantes', component: ListadeestudiantesComponent, canActivate: [AngularFireAuthGuard]   }, 
   
 
   
