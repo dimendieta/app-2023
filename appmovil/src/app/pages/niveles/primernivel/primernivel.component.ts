@@ -84,7 +84,7 @@ export class PrimernivelComponent implements OnInit {
      position: 0,
      success: false
     };
-    const carta5: CartaI = {
+/*     const carta5: CartaI = {
      imagen: "assets/img/entrar.png",
      enable: false,
      position: 0,
@@ -95,14 +95,14 @@ export class PrimernivelComponent implements OnInit {
      enable: false,
      position: 0,
      success: false
-    };
+    }; */
 
 
  this.cartas.push(carta2);
  this.cartas.push(carta3);
- this.cartas.push(carta5);
+/*  this.cartas.push(carta5); */
  this.cartas.push(carta4);
- this.cartas.push(carta6);
+/*  this.cartas.push(carta6); */
  this.cartas.push(carta1);
    
 
@@ -122,7 +122,7 @@ export class PrimernivelComponent implements OnInit {
            console.log('muy bien');
            carta.success = true;
            this.aciertos++;
-           if(this.aciertos==3){
+           if(this.aciertos==2){
            this.timerService.parartimer()
            //felicitar al usuario
            this.interaction.presentLoading('FELICIDADES ACABASTE EL NIVEL CON EXITO') 

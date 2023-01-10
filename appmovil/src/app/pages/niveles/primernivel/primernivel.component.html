@@ -8,7 +8,7 @@
 
   <ion-grid fixed >
     <ion-row class="ion-justify-content-center">
-      <ion-col size="5"  *ngFor="let carta of cartas">
+      <ion-col size="5" size-lg="2" size-md="4" size-sm="4"  *ngFor="let carta of cartas">
         <ion-card class="textura2" (click)="vuelta(carta)">
           <img *ngIf="carta.enable" [src]="carta.imagen" class="imagennivel1">
         </ion-card>
