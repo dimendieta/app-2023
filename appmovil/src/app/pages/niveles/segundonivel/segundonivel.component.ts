@@ -24,6 +24,7 @@ export class SegundonivelComponent implements OnInit {
   intentos: number=0;
   cont = 0;
   aciertos=0
+  fecha:Date 
 
 
   constructor(
@@ -146,6 +147,7 @@ export class SegundonivelComponent implements OnInit {
             const data:ResultadoJuego ={
               intentos:this.intentos,
               tiempo:this.tiempo,
+              fecha:new Date(),
               nivel:2,
               id: this.firestore.getId(),  
             }
@@ -196,6 +198,7 @@ interface CartaI {
 }
 interface ResultadoJuego{
   intentos:number
+  fecha:Date
   tiempo:{
     minutos:number
     segundos:number

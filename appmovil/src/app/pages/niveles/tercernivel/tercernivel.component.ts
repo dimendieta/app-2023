@@ -23,6 +23,7 @@ export class TercernivelComponent implements OnInit {
   intentos: number=0;
   cont = 0;
   aciertos=0
+  fecha:Date 
 
 
   constructor( public timerService:TimerService,
@@ -167,6 +168,7 @@ async vuelta(carta: CartaI) {
            const data:ResultadoJuego ={
 
             intentos:this.intentos,
+            fecha:new Date(),
              tiempo:this.tiempo,
              nivel:3,
              id: this.firestore.getId(),  
@@ -217,6 +219,7 @@ interface CartaI {
 }
 interface ResultadoJuego{
   intentos:number
+  fecha:Date;
   tiempo:{
     minutos:number
     segundos:number

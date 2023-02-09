@@ -18,6 +18,9 @@ export class ListadeestudiantesComponent implements OnInit {
 
   jugada: ResultadoJuego[]=[];
 
+  res: ResultadoJuego
+
+
   
   presentingElement = null;
 
@@ -76,7 +79,16 @@ export class ListadeestudiantesComponent implements OnInit {
       })
 
    }
- 
+
+
+  /*  obtenerdate(){
+    const path = 'Usuarios/' + this.userSelected + '/jugadas'
+    this.firestoreService.getCollection<ResultadoJuego>(path).subscribe(res=>{
+     fecha = new Date(res.fecha.seconds*1000);
+    })
+    
+   } */
+
  }
 
 
