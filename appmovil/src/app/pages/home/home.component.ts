@@ -14,9 +14,6 @@ estudiante: Cupon[]=[];
 genero:String="masculino";
 addNuevo: boolean=false;
 loading: any;
-
-
-
 editarEnable: boolean= false;
 
 correo: string;

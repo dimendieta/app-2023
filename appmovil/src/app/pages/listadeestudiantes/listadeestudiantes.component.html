@@ -1,8 +1,15 @@
 <ion-content>
 
+
   
   <div class="ion-page">
     
+    
+    <ion-button expand="block" [routerLink]="['/home']" class="bt2" color="dark">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+
+
       <div class="scene">
         <img src="assets/img/stars.png" class="stars">
         <img src="assets/img/space_ship.png" class="ship">
@@ -32,6 +39,7 @@
         </ion-row>
       </ion-grid>
 
+      
       <ion-modal #modal trigger="open-modal" [presentingElement]="presentingElement">
         <ng-template>
           <ion-header>
@@ -51,18 +59,25 @@
               <div *ngIf="!userSelected">
                 <ion-item *ngFor="let usuario of usuarios" (click)="selectuser(usuario)">
                  <br>
-                  <p>
-                    
+                  <p >
+                    <br>
+                    <ion-icon name="person-sharp"></ion-icon>
                     Nombre: {{usuario.nombre}}
                     <br>
-  
+                 
+                    <ion-icon name="mail-sharp"></ion-icon>
                     Correo: {{usuario.correo}}
+                
+
+                    <br>      
+                    <ion-icon name="call-sharp"></ion-icon>
+                    Telefono: {{usuario.telefono}}
                     <br>
-       
+               
+                    <ion-icon name="id-card-sharp"></ion-icon>
                     Id: {{usuario.uid}}
                     <br>
                     <br>
-            
   
   
   
@@ -82,46 +97,41 @@
                 <ion-button (click)="userSelected = null" expand="block" fill="clear" shape="round">
                   Atras
                 </ion-button>
-
+                <img src="https://i.pinimg.com/564x/11/3b/df/113bdf7bd699f147ba5ea94312692fac.jpg" no-repeat bottom right class="img2" >
                 <ion-item *ngFor="let jugadas of jugada" >
                   <br>
-                   <p>
 
-               
-                          
-                     Nivel: {{jugadas.nivel}}
-                     <br>
+                   <p>
+                 
+
+                        <br>
+                        <br>
+                        <ion-icon name="calendar-sharp"></ion-icon>
                      
+                    Fecha: {{jugadas.fecha}}
+                    <br>
+                    <ion-icon name="rocket-sharp"></ion-icon>
+                    Nivel: {{jugadas.nivel}}
+                    <br>
+                    <ion-icon name="game-controller-sharp"></ion-icon>
                      Intentos: {{jugadas.intentos}}
                      <br>
    
-
+                     <ion-icon name="stopwatch-sharp"></ion-icon>
                      Tiempo: {{jugadas.tiempo.minutos}} : {{jugadas.tiempo.segundos}}
                      <br>
                      <br>
-                
-                     Fecha: {{jugadas.fecha}}
-
-        
+              
+              
                    </p>
-                   
-                 
-     
-   
+                  
                </ion-item>
               </div>
               
-
-
-
-
-
             </ion-list>
           </ion-content>
         </ng-template>
       </ion-modal>
-
-
 
     </ion-content>
   </div>

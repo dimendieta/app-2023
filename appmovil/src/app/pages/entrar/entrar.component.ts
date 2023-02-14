@@ -14,8 +14,6 @@ export class EntrarComponent implements OnInit {
   showPassword=false;
   passwordToggleIcon='eye'; 
 
-
-
   credenciales={
 
     correo:null,
@@ -64,15 +62,7 @@ export class EntrarComponent implements OnInit {
     }
     }
   
- /*    mostrar() {
-      var tipo = document.getElementById("password");
-      if( tipo.type == "password"){
-            tipo.type = "text";
-      }else{
-          tipo.type = "password";
-      }
-    }
- */
+ 
   
   }
 
