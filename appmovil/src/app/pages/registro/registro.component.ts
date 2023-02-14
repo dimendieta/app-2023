@@ -56,7 +56,7 @@ passwordToggleIcon='eye';
   async registrarse() {
     if (this.newUser.password != this.repassword) {
       console.log('passwords no coinciden');  
-      this.interaction.presentToast('Error en tu contraseña ')
+      this.interaction.presentToast('Error en tu contraseña (minimo 6 caracteres) ')
       return;
     }
 
@@ -64,7 +64,7 @@ passwordToggleIcon='eye';
     console.log('User -> ', this.newUser);
     const res = await  this.authenticationService.registrarUser(this.newUser).catch( error=>{
       this.interaction.closeLoading();
-      this.interaction.presentToast('Error en tu correo')
+      this.interaction.presentToast('Error en tu correo o contraseña')
       console.log('error');
     });
     console.log('res -> ',res);

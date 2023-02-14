@@ -1,6 +1,7 @@
 <ion-content class="texturanivel">
   <ion-button expand="block" [routerLink]="['/plantilla']" class="bt2" color="tertiary">
-    <ion-icon name="home-sharp"></ion-icon>
+    <ion-icon name="arrow-back"></ion-icon>
+  
   </ion-button>
 
 <ion-grid >
@@ -19,29 +20,22 @@
     Regístrate
     
     </ion-card-title>
-    <ion-list>
-    </ion-list>
-  
-    
-    <ion-content>
-
-
-
+   
 
       <ion-item>
-          <ion-label position="floating" >Ingresa tu correo</ion-label>
-          <ion-input [(ngModel)]="newUser.correo"></ion-input>
+          <ion-label position="floating" >*Ingresa tu correo</ion-label>
+          <ion-input [(ngModel)]="newUser.correo" placeholder="Ejm: juan2012@gmail.com"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
-        <ion-input [(ngModel)]="newUser.nombre"></ion-input>
+        <ion-input [(ngModel)]="newUser.nombre" placeholder="Ejm: Juan"></ion-input>
     </ion-item>
     
     
     <ion-item>
       <ion-label position="floating" >Telefono</ion-label>
-      <ion-input [(ngModel)]="newUser.telefono"></ion-input>
+      <ion-input [(ngModel)]="newUser.telefono" placeholder="Ejm: 0983527584 / 2460589"></ion-input>
     </ion-item>
     
  <!-- <ion-item>
@@ -50,7 +44,7 @@
     </ion-item>  -->
     
       <ion-item>
-          <ion-label position="floating" >Contraseña </ion-label>
+          <ion-label position="floating" > *Contraseña </ion-label>
           <ion-input name="password" placeholder="Minimo 6 caracteres" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="newUser.password" ></ion-input>
           <ion-icon slot="end" [name]="passwordToggleIcon"(click)="togglePassword()"> </ion-icon>
           
@@ -58,7 +52,7 @@
     
 
       <ion-item>
-        <ion-label position="floating" >Repite Contraseña </ion-label>
+        <ion-label position="floating" > *Repite Contraseña </ion-label>
         <ion-input name="password" placeholder="Minimo 6 caracteres"  [type]="showPassword ? 'text' : 'password'" [(ngModel)]="repassword"></ion-input>
         <ion-icon slot="end" [name]="passwordToggleIcon"(click)="togglePassword()"> </ion-icon>
 
@@ -88,5 +82,5 @@
               </ion-button>
           </ion-buttons>
       </ion-item>
-    
+        
 </ion-content> 

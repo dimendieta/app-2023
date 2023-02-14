@@ -11,6 +11,11 @@ import { InteractionService } from 'src/app/services/interaction.service';
 })
 export class EntrarComponent implements OnInit {
 
+  showPassword=false;
+  passwordToggleIcon='eye'; 
+
+
+
   credenciales={
 
     correo:null,
@@ -24,6 +29,17 @@ export class EntrarComponent implements OnInit {
               private interaction: InteractionService) {
       console.log("hola estoy en login");   
   }
+
+
+  togglePassword():void {
+    this.showPassword = !this.showPassword;
+    if (this.passwordToggleIcon== 'eye') {
+    this.passwordToggleIcon= 'eye-off';
+    }else{
+      this.passwordToggleIcon='eye';
+    }
+    
+    }
 
   ngOnInit() {
   }
