@@ -57,7 +57,9 @@
               
 
               <div *ngIf="!userSelected">
+                <img src="assets/img/robotlista.png" no-repeat bottom right class="img3" >
                 <ion-item *ngFor="let usuario of usuarios" (click)="selectuser(usuario)">
+            
                  <br>
                   <p >
                     <br>
@@ -97,7 +99,7 @@
                 <ion-button (click)="userSelected = null" expand="block" fill="clear" shape="round">
                   Atras
                 </ion-button>
-                <img src="https://i.pinimg.com/564x/11/3b/df/113bdf7bd699f147ba5ea94312692fac.jpg" no-repeat bottom right class="img2" >
+                <img src="assets/img/resultadosusuarios.png" no-repeat bottom right class="img2" >
                 <ion-item *ngFor="let jugadas of jugada" >
                   <br>
 
