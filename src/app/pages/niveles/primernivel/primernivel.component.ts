@@ -23,7 +23,8 @@ export class PrimernivelComponent implements OnInit {
   cont = 0;
   aciertos=0
   uid: string
-  
+  dateNow: Date = new Date();
+
   
 
   constructor(
@@ -34,6 +35,9 @@ export class PrimernivelComponent implements OnInit {
   private firestore: FirestoreService,
   ) {
 
+   
+    this.timerService.inittimer();
+    this.timerService.setTimer();
     setTimeout(()=>{
       this.tiempo=this.timerService.tiempo;
      },1000)
@@ -84,7 +88,7 @@ export class PrimernivelComponent implements OnInit {
      position: 0,
      success: false
     };
-    const carta5: CartaI = {
+/*     const carta5: CartaI = {
      imagen: "assets/img/entrar.png",
      enable: false,
      position: 0,
@@ -95,14 +99,14 @@ export class PrimernivelComponent implements OnInit {
      enable: false,
      position: 0,
      success: false
-    };
+    }; */
 
 
  this.cartas.push(carta2);
  this.cartas.push(carta3);
- this.cartas.push(carta5);
+/*  this.cartas.push(carta5); */
  this.cartas.push(carta4);
- this.cartas.push(carta6);
+/*  this.cartas.push(carta6); */
  this.cartas.push(carta1);
    
 
@@ -122,17 +126,20 @@ export class PrimernivelComponent implements OnInit {
            console.log('muy bien');
            carta.success = true;
            this.aciertos++;
-           if(this.aciertos==3){
+           if(this.aciertos==2){
            this.timerService.parartimer()
            //felicitar al usuario
-           this.interaction.presentLoading('FELICIDADES ACABASTE EL NIVEL CON EXITO') 
+            this.interaction.presentLoading('FELICIDADES ACABASTE EL NIVEL CON EXITO') 
            this.interaction.presentToast('Prueba el Siguiente Nivel');
+           
            setTimeout(() => {
              this.interaction.closeLoading();
-           }, 2000);
+           }, 2000); 
+           
                 this.router.navigate(['/niveles'])
            const data:ResultadoJuego ={
              intentos:this.intentos,
+             dateNow:this.dateNow,
              tiempo:this.tiempo,
              nivel:1,
              id: this.firestore.getId(),  
@@ -156,11 +163,12 @@ export class PrimernivelComponent implements OnInit {
          setTimeout(() => {
            this.reset()
          }, 2000);
-       }
-       this.cont = 0;
-       return;
-    }
-    this.cont = this.cont + 1;
+        }
+        this.cont = 0;
+        return;
+      }
+ 
+      this.cont = this.cont + 1;
     
  }
 
@@ -171,6 +179,8 @@ export class PrimernivelComponent implements OnInit {
        carta.enable = false;
      }
     })
+
+
  }
 
 
@@ -184,6 +194,7 @@ interface CartaI {
 }
  interface ResultadoJuego{
   intentos:number
+  dateNow:Date
   tiempo:{
     minutos:number
     segundos:number

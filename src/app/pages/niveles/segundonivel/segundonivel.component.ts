@@ -24,6 +24,9 @@ export class SegundonivelComponent implements OnInit {
   intentos: number=0;
   cont = 0;
   aciertos=0
+  fecha:Date 
+  dateNow: Date = new Date();
+  
 
 
   constructor(
@@ -33,10 +36,16 @@ export class SegundonivelComponent implements OnInit {
     private firestore: FirestoreService,
     private auth: AuthenticationService
     /* firestore: Firestore */
-  ) { 
+  ) {
+    
+  this.timerService.inittimer();
+
+  this.timerService.setTimer();
     setTimeout(()=>{
       this.tiempo=this.timerService.tiempo;
      },1000)
+
+
   }
 
 
@@ -44,7 +53,6 @@ export class SegundonivelComponent implements OnInit {
   ngOnInit() {
     this.login();
     this.setCartas();
-  
   }
 
   async login() {
@@ -92,7 +100,7 @@ export class SegundonivelComponent implements OnInit {
       position: 0,
       success: false
      };
-     const carta7: CartaI = {
+/*      const carta7: CartaI = {
       imagen: "assets/img/aguacate.png",
       enable: false,
       position: 0,
@@ -103,17 +111,17 @@ export class SegundonivelComponent implements OnInit {
       enable: false,
       position: 0,
       success: false
-     };
+     }; */
 
 
   this.cartas.push(carta2);
   this.cartas.push(carta6);
   this.cartas.push(carta5);
-  this.cartas.push(carta8);
+ /*  this.cartas.push(carta8); */
   this.cartas.push(carta3);
   this.cartas.push(carta4);
   this.cartas.push(carta1);
-  this.cartas.push(carta7);
+/*   this.cartas.push(carta7); */
     
 
   }
@@ -132,7 +140,7 @@ export class SegundonivelComponent implements OnInit {
             console.log('muy bien');
             carta.success = true;
             this.aciertos++;
-            if(this.aciertos==4){
+            if(this.aciertos==3){
             this.timerService.parartimer()
 
             this.interaction.presentLoading('FELICIDADES ACABASTE EL NIVEL CON EXITO') 
@@ -145,6 +153,7 @@ export class SegundonivelComponent implements OnInit {
             //felicitar al usuario
             const data:ResultadoJuego ={
               intentos:this.intentos,
+              dateNow:this.dateNow,
               tiempo:this.tiempo,
               nivel:2,
               id: this.firestore.getId(),  
@@ -153,11 +162,13 @@ export class SegundonivelComponent implements OnInit {
             const path = 'Usuarios/' + uid + '/jugadas';
          
             this.firestore.saveDoc(path,data.id,data).then(() => {
- 
+              this.interaction.presentToast('Se guardo correctamente tu progreso');
             })
 
             }
             this.primerClick.success = true;
+
+
         } else {
           this.interaction.presentToast('Intenta de Nuevo');
           console.log('mal');
@@ -196,6 +207,7 @@ interface CartaI {
 }
 interface ResultadoJuego{
   intentos:number
+  dateNow:Date
   tiempo:{
     minutos:number
     segundos:number

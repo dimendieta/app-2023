@@ -26,7 +26,8 @@ export interface ResponseApiSumaI{
       }
 
       export interface ResultadoJuego{
-           id:string
+           id:string,
+           dateNow:string
           intentos:number
           tiempo:{
                minutos:number

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActionSheetController, CheckboxCustomEvent } from '@ionic/angular';
 import { ResultadoJuego, UserInfoI } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { VERSION } from '@angular/core';
 
 @Component({
   selector: 'app-listadeestudiantes',
@@ -12,13 +13,23 @@ export class ListadeestudiantesComponent implements OnInit {
 
 @Input() usuario:ResultadoJuego;
 
+version = VERSION.full;
+
   usuarios: UserInfoI[]=[];
 
   userSelected:UserInfoI;
 
   jugada: ResultadoJuego[]=[];
 
-  
+  res: ResultadoJuego
+
+  formatsDateTest: string[] = [
+   ,
+  ];
+
+  dateNow: Date = new Date();
+  dateNowISO = this.dateNow.toISOString();
+  dateNowMilliseconds = this.dateNow.getTime();
   presentingElement = null;
 
   constructor(private actionSheetCtrl: ActionSheetController,
@@ -76,7 +87,16 @@ export class ListadeestudiantesComponent implements OnInit {
       })
 
    }
- 
+
+
+  /*  obtenerdate(){
+    const path = 'Usuarios/' + this.userSelected + '/jugadas'
+    this.firestoreService.getCollection<ResultadoJuego>(path).subscribe(res=>{
+     fecha = new Date(res.fecha.seconds*1000);
+    })
+    
+   } */
+
  }
 
 

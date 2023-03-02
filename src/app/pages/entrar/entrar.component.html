@@ -2,7 +2,7 @@
 
 
   <ion-button expand="block" [routerLink]="['/plantilla']" class="bt2" color="tertiary">
-    <ion-icon name="home-sharp"></ion-icon>
+    <ion-icon name="arrow-back"></ion-icon>
   </ion-button>
 
  <ion-grid fixed>
@@ -34,18 +34,15 @@
 
   <ion-item>
     <ion-label position="floating"> Ingresa tu correo</ion-label>
-    <ion-input type="string" [(ngModel)]="this.credenciales.correo"></ion-input>
+    <ion-input type="string" [(ngModel)]="this.credenciales.correo" placeholder="Escribe tu correo"></ion-input>
   </ion-item>
+
 
    <ion-item>
-    <ion-label position="floating">Ingresa tu contraseña (6-digitos)</ion-label>
-    <ion-input type="password" minlength="6" [(ngModel)]="this.credenciales.password"></ion-input>
-   
-<!--     <ion-button (click)="mostrar()" expand="block" fill="clear" shape="round">
-      Click me
-    </ion-button> -->
-
-  </ion-item>
+    <ion-label position="floating">Ingresa tu contraseña </ion-label>
+    <ion-input name="password" placeholder="Escribe tu contraseña de 6 digitos" [type]="showPassword ? 'text' : 'password' " minlength="6" [(ngModel)]="this.credenciales.password" placeholder="Escribe tu contraseña"></ion-input>
+    <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+   </ion-item>
 
    <ion-item>
   <ion-label>¿No tienes un usuario?</ion-label>

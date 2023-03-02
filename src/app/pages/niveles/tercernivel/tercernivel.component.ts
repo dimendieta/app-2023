@@ -24,13 +24,21 @@ export class TercernivelComponent implements OnInit {
   cont = 0;
   aciertos=0
 
-
+  dateNow: Date = new Date();
+ 
+  
   constructor( public timerService:TimerService,
     private interaction: InteractionService,
     private router: Router,
     private firestore: FirestoreService,
     private auth: AuthenticationService
     ) {
+
+      this.timerService.inittimer();
+
+      this.timerService.setTimer();
+
+
     setTimeout(()=>{
       this.tiempo=this.timerService.tiempo;
      },1000)
@@ -98,7 +106,7 @@ export class TercernivelComponent implements OnInit {
      position: 0,
      success: false
     };
-    const carta9: CartaI = {
+/*     const carta9: CartaI = {
      imagen: "assets/img/cinco.png",
      enable: false,
      position: 0,
@@ -109,8 +117,8 @@ export class TercernivelComponent implements OnInit {
      enable: false,
      position: 0,
      success: false
-    };
-    const carta11: CartaI = {
+    }; */
+/*     const carta11: CartaI = {
      imagen: "assets/img/seis.png",
      enable: false,
      position: 0,
@@ -121,21 +129,21 @@ export class TercernivelComponent implements OnInit {
      enable: false,
      position: 0,
      success: false
-    };
+    }; */
 
 
  this.cartas.push(carta2);
  this.cartas.push(carta3);
- this.cartas.push(carta10);
+/*  this.cartas.push(carta10); */
  this.cartas.push(carta5);
- this.cartas.push(carta11);
+/*  this.cartas.push(carta11); */
  this.cartas.push(carta6);
  this.cartas.push(carta4);
  this.cartas.push(carta1);
  this.cartas.push(carta7);
  this.cartas.push(carta8);
- this.cartas.push(carta12);
- this.cartas.push(carta9);
+/*  this.cartas.push(carta12); */
+/*  this.cartas.push(carta9); */
    
 
  }
@@ -154,7 +162,7 @@ async vuelta(carta: CartaI) {
            console.log('muy bien');
            carta.success = true;
            this.aciertos++;
-           if(this.aciertos==6){
+           if(this.aciertos==4){
            this.timerService.parartimer()
  
              this.interaction.presentLoading('FELICIDADES ACABASTE TODOS LOS NIVELES CON EXITO' ) 
@@ -168,17 +176,19 @@ async vuelta(carta: CartaI) {
 
             intentos:this.intentos,
              tiempo:this.tiempo,
+             dateNow:this.dateNow,
              nivel:3,
              id: this.firestore.getId(),  
            }
            const uid=  await this.auth.getUid();
            const path = 'Usuarios/' + uid + '/jugadas';
+
            this.firestore.saveDoc(path,data.id,data).then(() => {
 
+            this.interaction.presentToast('Se guardo correctamente tu progreso');
            })
-
+      
            }
-    
            this.primerClick.success = true;
        } else {
         this.interaction.presentToast('Intenta de Nuevo');
@@ -202,7 +212,7 @@ async vuelta(carta: CartaI) {
        carta.enable = false;
      }
     })
-    this.interaction.closeLoading();
+    
  }
 
 
@@ -216,6 +226,7 @@ interface CartaI {
 }
 interface ResultadoJuego{
   intentos:number
+  dateNow:Date
   tiempo:{
     minutos:number
     segundos:number

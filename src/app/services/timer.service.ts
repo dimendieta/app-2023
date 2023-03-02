@@ -14,7 +14,7 @@ export class TimerService {
 
   inittime= new Date();
   constructor() { 
-    this.setTimer();
+  
   }
 
  setTimer(){
@@ -37,8 +37,16 @@ export class TimerService {
   
   }
 
+  inittimer() {
+    this.tiempo={
+      minutos:0,
+      segundos:0,
+    }
+  }
+
   parartimer(){
     clearTimeout(this.timer);
   }
+
 
 }

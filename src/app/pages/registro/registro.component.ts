@@ -8,12 +8,16 @@ import { InteractionService } from 'src/app/services/interaction.service';
 
 
 
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
 })
 export class RegistroComponent implements OnInit {
+
+showPassword=false;
+passwordToggleIcon='eye'; 
 
 
   newUser: UserInfoI = {
@@ -34,14 +38,25 @@ export class RegistroComponent implements OnInit {
               private firestoreService: FirestoreService,
               public loadingController: LoadingController,
               private router: Router,
-              private interaction:InteractionService
+              private interaction:InteractionService,
+               
               ) { }
 
   ngOnInit() {}
 
+  togglePassword():void {
+    this.showPassword = !this.showPassword;
+    if (this.passwordToggleIcon== 'eye') {
+    this.passwordToggleIcon= 'eye-off';
+    }else{
+      this.passwordToggleIcon='eye';
+    }
+    
+    }
   async registrarse() {
     if (this.newUser.password != this.repassword) {
       console.log('passwords no coinciden');  
+      this.interaction.presentToast('Error en tu contraseña' )
       return;
     }
 
@@ -49,7 +64,8 @@ export class RegistroComponent implements OnInit {
     console.log('User -> ', this.newUser);
     const res = await  this.authenticationService.registrarUser(this.newUser).catch( error=>{
       this.interaction.closeLoading();
-      this.interaction.presentToast('Error en los datos')
+
+      this.interaction.presentToast('Error en tu correo o contraseña')
       console.log('error');
     });
     console.log('res -> ',res);
@@ -62,12 +78,12 @@ export class RegistroComponent implements OnInit {
        this.newUser.password = null
        this.firestoreService.saveDoc(path, id,this.newUser)
        this.interaction.closeLoading();
-       this.interaction.presentToast('registrado con exito');
+       this.interaction.presentToast('Registrado con exito');
        this.router.navigate(['/home'])
        // guardar en la base de datos
     }
     
- }
+}
 
  async presentLoading() {
   const loading = await this.loadingController.create({
@@ -82,7 +98,9 @@ export class RegistroComponent implements OnInit {
 }
 
 
-}
 
- 
+
+
+
+}
 
