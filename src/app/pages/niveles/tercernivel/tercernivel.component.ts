@@ -83,13 +83,13 @@ export class TercernivelComponent implements OnInit {
      success: false
     };
     const carta5: CartaI = {
-     imagen: "assets/img/tres.png",
+     imagen: "assets/img/numero3.png",
      enable: false,
      position: 0,
      success: false
     };
     const carta6: CartaI = {
-     imagen: "assets/img/tres.png",
+     imagen: "assets/img/numero3.png",
      enable: false,
      position: 0,
      success: false
